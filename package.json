@@ -1,0 +1,34 @@
+{
+  "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
+    "babel-core": "^6.26.3",
+    "gulp": "^4.0.0",
+    "gulp-babel": "latest",
+    "gulp-clean-css": "^4.2.0",
+    "gulp-concat": "latest",
+    "gulp-concat-css": "latest",
+    "gulp-connect": "^5.7.0",
+    "gulp-eslint": "latest",
+    "gulp-plumber": "latest",
+    "gulp-sass": "^4.0.2",
+    "gulp-uglify": "^3.0.2"
+  },
+  "name": "portfolio2019",
+  "description": "",
+  "version": "1.0.0",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabeferreira/portfolio2019.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gabeferreira/portfolio2019/issues"
+  },
+  "homepage": "https://github.com/gabeferreira/portfolio2019#readme"
+}
