@@ -127,7 +127,7 @@ body.shake {
 #backgroundTextContainer {
   width: 100%;
   text-align: center;
-  font-size: 16.5vw;
+  font-size: 17vw;
   letter-spacing: -1px;
   line-height: .9em;
   display: flex;
@@ -138,10 +138,11 @@ body.shake {
 
 #backgroundText {
   opacity: 0;
-  padding: 2vw;
+  padding: 1.5vw;
   box-sizing: border-box;
   transform: scale(5);
-  color: #0a0a0a; }
+  color: #0a0a0a;
+  letter-spacing: -.01em; }
 
 #backgroundText.loaded.disappear {
   transition: none;
@@ -154,9 +155,11 @@ body.shake {
   transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1); }
 
 #monologue {
-  border-radius: 8px;
   width: 100%;
-  transition: border-radius 0.4s; }
+  transition: filter 1s; }
+
+#monologue.blurred {
+  filter: blur(30px); }
 
 #monologueContainer {
   width: 40%;
@@ -167,12 +170,14 @@ body.shake {
   transform: translateX(-50%) translateY(-50%) scale(5);
   z-index: 50;
   opacity: 0;
-  transition: width 0.4s; }
+  transition: width 0.4s;
+  overflow: hidden;
+  background: #96ff96; }
 
 #monologueContainer.loaded {
   opacity: 1;
   transform: translateX(-50%) translateY(-50%) scale(1);
-  transition: opacity 1s, transform 1s, width 0.4s;
+  transition: opacity 1s, transform 1s, width 0.4s, border-radius 0.4s;
   transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1); }
 
 #monologueContainer.loaded.playing {
@@ -180,19 +185,18 @@ body.shake {
   cursor: default; }
 
 #monologueContainer.larger {
-  width: 60%; }
-  #monologueContainer.larger #monologue {
-    border-radius: 16px; }
+  width: 60%;
+  border-radius: 16px; }
 
-#monologue.spin {
+#monologueContainer.loaded.spin {
   animation: spin 1.5s forwards;
-  transform-origin: center; }
+  transform-origin: 0 0; }
 
 @keyframes spin {
   0% {
-    transform: rotate(0); }
+    transform: rotate(0) translateX(-50%) translateY(-50%) scale(1); }
   100% {
-    transform: rotate(360deg); } }
+    transform: rotate(360deg) translateX(-50%) translateY(-50%) scale(1); } }
 
 #cursor {
   width: 350px;
@@ -241,7 +245,7 @@ body.shake {
 
 .siteNotice {
   position: fixed;
-  z-index: 200;
+  z-index: 150;
   bottom: 15px;
   font-family: courier, monospace;
   font-size: 14px;
@@ -262,3 +266,89 @@ body.shake {
 
 .siteNotice:last-child {
   right: 15px; }
+
+#encryption {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 200;
+  transform: translateY(100%); }
+
+#encryption.visible {
+  transform: translateY(0);
+  transition: transform 1s; }
+
+#encryption.visible.hidden {
+  transform: translateY(100%); }
+
+#encryption img {
+  width: 100%; }
+
+#buyNowButtonContainer {
+  visibility: hidden; }
+
+#buyNowButtonContainer.loaded {
+  visibility: visible; }
+
+#buyNowButtonContainer img {
+  position: fixed;
+  width: 60%;
+  height: auto;
+  z-index: 10;
+  transform: scale(0);
+  opacity: 0;
+  transition: none;
+  transition: transform 0.4s, opacity 0.4s; }
+
+#buyNowButtonContainer img:nth-child(1) {
+  top: -1%;
+  left: 3%;
+  transition-delay: .0s; }
+
+#buyNowButtonContainer img:nth-child(2) {
+  top: 7%;
+  left: 44%;
+  transition-delay: .1s; }
+
+#buyNowButtonContainer img:nth-child(3) {
+  top: 22%;
+  left: 30%;
+  transition-delay: .2s; }
+
+#buyNowButtonContainer img:nth-child(4) {
+  top: 39%;
+  left: 57%;
+  transition-delay: .3s; }
+
+#buyNowButtonContainer img:nth-child(5) {
+  top: 65%;
+  left: -2%;
+  transition-delay: .4s; }
+
+#buyNowButtonContainer img:nth-child(6) {
+  top: 69%;
+  left: 38%;
+  transition-delay: .5s; }
+
+#buyNowButtonContainer.active img {
+  opacity: 1; }
+
+#buyNowButtonContainer.active img:nth-child(1) {
+  transform: scale(1) rotate(5deg); }
+
+#buyNowButtonContainer.active img:nth-child(2) {
+  transform: scale(1) rotate(-10deg); }
+
+#buyNowButtonContainer.active img:nth-child(3) {
+  transform: scale(1) rotate(10deg); }
+
+#buyNowButtonContainer.active img:nth-child(4) {
+  transform: scale(1) rotate(-2.5deg); }
+
+#buyNowButtonContainer.active img:nth-child(5) {
+  transform: scale(1) rotate(-14deg); }
+
+#buyNowButtonContainer.active img:nth-child(6) {
+  transform: scale(1) rotate(5deg); }

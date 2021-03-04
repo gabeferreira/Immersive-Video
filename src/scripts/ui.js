@@ -2,6 +2,7 @@
 
 var playVideo = document.getElementById('playVideo');
 var backgroundText = document.getElementById('backgroundText');
+var encryption = document.getElementById('encryption');
 
 backgroundText.textContent = 'A proposal for immersive video on the web';
 
@@ -58,6 +59,24 @@ monologue.addEventListener('timeupdate', function(){
 	// Shake the screen (48,49)
 	if (monologue.currentTime > 48 && monologue.currentTime < 49) { shakeTheScreen(); }
 
+	// Display buy now buttons (60,61)
+	if (monologue.currentTime > 61 && monologue.currentTime < 62) { displayBuyNowButtons(); }
+
+	// Hide buy now buttons (66,67)
+	if (monologue.currentTime > 66 && monologue.currentTime < 67) { hideBuyNowButtons(); }
+
+	// Blur the video (72,73)
+	if (monologue.currentTime > 72 && monologue.currentTime < 73) { blurTheVideo(); }
+
+	// Encryption (82,83)
+	if (monologue.currentTime > 82 && monologue.currentTime < 83) { encryptTheScreen(); }
+
+	// Disable screen encryption (87,88)
+	if (monologue.currentTime > 87 && monologue.currentTime < 88) { disableEncryptedScreen(); }
+
+	// Real-time information (110,111)
+	if (monologue.currentTime > 110 && monologue.currentTime < 111) { displayRealTimeData(); }
+
 });
 
 // Website morphing functions
@@ -72,9 +91,9 @@ function growVideoPlayer() {
 
 function spinVideoPlayer() {
 	
-	monologue.classList.add('spin');
-	monologue.addEventListener('animationend', function(){
-		monologue.classList.remove('spin');
+	monologueContainer.classList.add('spin');
+	monologueContainer.addEventListener('animationend', function(){
+		monologueContainer.classList.remove('spin');
 	});
 
 }
@@ -93,5 +112,46 @@ function shakeTheScreen() {
 	body.addEventListener('animationend', function(){
 		body.classList.remove('shake');
 	});
+
+}
+
+function displayBuyNowButtons() {
+
+	buyNowButtonContainer.classList.add('loaded');
+	buyNowButtonContainer.classList.add('active');
+
+}
+
+function hideBuyNowButtons() {
+
+	buyNowButtonContainer.classList.remove('active');
+
+}
+
+function blurTheVideo() {
+
+	monologue.classList.add('blurred');
+
+}
+
+function encryptTheScreen() {
+
+	encryption.classList.add('visible');
+
+	setTimeout(function(){
+		body.classList.remove('yellowBackground');
+		monologue.classList.remove('blurred');
+		monologueContainer.classList.remove('larger')
+	}, 1000);
+
+}
+
+function disableEncryptedScreen() {
+
+	encryption.classList.add('hidden');
+
+}
+
+function displayRealTimeData() {
 
 }
