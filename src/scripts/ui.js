@@ -3,6 +3,8 @@
 var playVideo = document.getElementById('playVideo');
 var backgroundText = document.getElementById('backgroundText');
 var encryption = document.getElementById('encryption');
+var bitcoinPrice;
+var dayOfWeek;
 
 backgroundText.textContent = 'A proposal for immersive video on the web';
 
@@ -74,8 +76,11 @@ monologue.addEventListener('timeupdate', function(){
 	// Disable screen encryption (87,88)
 	if (monologue.currentTime > 87 && monologue.currentTime < 88) { disableEncryptedScreen(); }
 
-	// Real-time information (110,111)
-	if (monologue.currentTime > 110 && monologue.currentTime < 111) { displayRealTimeData(); }
+	// Real-time information (97,98)
+	if (monologue.currentTime > 97 && monologue.currentTime < 98) { displayRealTimeData(); }
+
+	// Pause the video (126,127)
+	if (monologue.currentTime > 126 && monologue.currentTime < 127) { pauseTheVideo(); }
 
 });
 
@@ -152,6 +157,77 @@ function disableEncryptedScreen() {
 
 }
 
-function displayRealTimeData() {
+function getBitcoinPrice() {
+	
+	var xmlhttp = new XMLHttpRequest();
+
+	xmlhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			var bitcoinApiResponse = JSON.parse(this.responseText);
+			bitcoinPrice = bitcoinApiResponse.bpi.USD.rate.slice(0,-2);
+
+		}
+	};
+
+	xmlhttp.open("GET", "https://api.coindesk.com/v1/bpi/currentprice.json", true);
+	xmlhttp.send();
 
 }
+
+getBitcoinPrice();
+
+function determineIfItIsFriday() {
+
+	var date = new Date();
+	dayOfWeek = date.getDay();
+
+	return dayOfWeek;
+
+}
+
+var displayRealTimeData = (function() {
+	var executed = false;
+	return function() {
+		if (!executed) {
+			executed = true;
+			determineIfItIsFriday();
+
+			var isItFriday = function() {
+
+				if (dayOfWeek === 'Friday') {
+					return 'It is already Friday,';
+				} else {
+					return 'It is not Friday yet,';
+				}
+
+			}
+
+			var realTimeData = document.createElement('div');
+				realTimeData.id = 'realTimeData';
+				// realTimeData.textContent = isItFriday() + ' and Bitcoin is worth USD ' + bitcoinPrice + '.';
+				realTimeData.textContent = '1 BTC is now worth $' + bitcoinPrice + '.';
+
+			body.appendChild(realTimeData);
+			setTimeout(function(){
+				realTimeData.classList.add('active');
+			}, 500)
+		}
+	};
+})();
+
+var pauseTheVideo = (function() {
+	var executed = false;
+	return function() {
+		if (!executed) {
+			executed = true;
+			
+			monologue.pause();
+			setTimeout(function(){
+				monologue.play();
+			}, 4500);
+
+		}
+	};
+})();
+
+

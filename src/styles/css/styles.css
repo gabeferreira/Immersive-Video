@@ -313,8 +313,8 @@ body.shake {
   transition-delay: .1s; }
 
 #buyNowButtonContainer img:nth-child(3) {
-  top: 22%;
-  left: 30%;
+  top: 34%;
+  left: 10%;
   transition-delay: .2s; }
 
 #buyNowButtonContainer img:nth-child(4) {
@@ -342,7 +342,7 @@ body.shake {
   transform: scale(1) rotate(-10deg); }
 
 #buyNowButtonContainer.active img:nth-child(3) {
-  transform: scale(1) rotate(10deg); }
+  transform: scale(1) rotate(14deg); }
 
 #buyNowButtonContainer.active img:nth-child(4) {
   transform: scale(1) rotate(-2.5deg); }
@@ -352,3 +352,18 @@ body.shake {
 
 #buyNowButtonContainer.active img:nth-child(6) {
   transform: scale(1) rotate(5deg); }
+
+#realTimeData {
+  white-space: nowrap;
+  font-size: 20vw;
+  line-height: 1em;
+  -webkit-text-stroke: 2px black;
+  color: yellow;
+  position: fixed;
+  letter-spacing: -.01em;
+  top: 50%;
+  transform: translateY(-52.5%) translateX(42.5%);
+  transition: transform 20s linear; }
+
+#realTimeData.active {
+  transform: translateY(-52.5%) translateX(-100%); }
