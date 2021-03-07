@@ -4,5 +4,12 @@
 		url('fonts/marr-sans/MarrSansCondWeb-Medium.woff') format('woff');
 	font-weight:500;
 	font-style:normal;
-	font-display:swap;
+}
+
+@font-face {
+	font-family:'nhg';
+	src:url('fonts/nhg/NeueHaasGrotDisp-75Bold-Web.woff2') format('woff2'),
+		url('fonts/nhg/NeueHaasGrotDisp-75Bold-Web.woff') format('woff');
+	font-weight:500;
+	font-style:normal;
 }

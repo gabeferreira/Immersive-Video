@@ -18,16 +18,23 @@ setTimeout(function(){
 
 	document.addEventListener('click', function(event){
 
-		console.log(event.target);
-
 		if (cursor.classList.contains('pause')) {
 
-			cursor.classList.remove('pause');
-			monologue.pause();
+			if (body.classList.contains('pauseJoke') || event.target.id === 'captionToggle') {
+
+				return;
+
+			} else {
+
+				cursor.classList.remove('pause');
+				monologue.pause();
+				body.classList.add('videoIsPaused');
+
+			}
 
 		} else {
 
-			if (event.target.classList.contains('siteNotice')) {
+			if (event.target.classList.contains('siteNotice') || event.target.id === 'captionToggle') {
 
 				return;
 
@@ -35,6 +42,7 @@ setTimeout(function(){
 
 				cursor.classList.add('pause');
 				monologue.play();
+				body.classList.remove('videoIsPaused');
 
 			};
 

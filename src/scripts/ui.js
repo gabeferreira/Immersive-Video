@@ -5,6 +5,8 @@ var backgroundText = document.getElementById('backgroundText');
 var encryption = document.getElementById('encryption');
 var bitcoinPrice;
 var dayOfWeek;
+var siteNoticeContainer = document.getElementById('siteNoticeContainer');
+var captionToggle = document.getElementById('captionToggle');
 
 backgroundText.textContent = 'A proposal for immersive video on the web';
 
@@ -31,16 +33,41 @@ function createVideo() {
 
 	monologueContainer.appendChild(monologue);
 	monologue.load();
+
+	monologue.addEventListener("loadedmetadata", function() {
+		track = document.createElement("track");
+		track.kind = "captions";
+		track.label = "English";
+		track.srclang = "en";
+		track.src = "assets/video/captions.vtt";
+		this.appendChild(track);
+	});
 }
 
 createVideo();
 
+// Bring in the elements
 setTimeout(function(){
 
 	monologueContainer.className = 'loaded';
 	cursor.classList.add('loaded');
 
+	siteNoticeContainer.classList.add('loaded');
+	captionToggle.classList.add('loaded');
+
 }, 4000);
+
+captionToggle.addEventListener('click', function(){
+
+	captionToggle.classList.toggle('on');
+
+	if (captionToggle.classList.contains('on')) {
+		monologue.textTracks[0].mode = "showing";
+	} else {
+		monologue.textTracks[0].mode = "hidden";
+	}
+
+});
 
 monologue.addEventListener('timeupdate', function(){
 
@@ -76,8 +103,8 @@ monologue.addEventListener('timeupdate', function(){
 	// Disable screen encryption (87,88)
 	if (monologue.currentTime > 87 && monologue.currentTime < 88) { disableEncryptedScreen(); }
 
-	// Real-time information (97,98)
-	if (monologue.currentTime > 97 && monologue.currentTime < 98) { displayRealTimeData(); }
+	// Real-time information (96,97)
+	if (monologue.currentTime > 96 && monologue.currentTime < 97) { displayRealTimeData(); }
 
 	// Pause the video (126,127)
 	if (monologue.currentTime > 126 && monologue.currentTime < 127) { pauseTheVideo(); }
@@ -222,7 +249,10 @@ var pauseTheVideo = (function() {
 			executed = true;
 			
 			monologue.pause();
+			body.classList.add('pauseJoke');
+
 			setTimeout(function(){
+				body.classList.remove('pauseJoke');
 				monologue.play();
 			}, 4500);
 
