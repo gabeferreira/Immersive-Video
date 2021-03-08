@@ -81,6 +81,13 @@ body.blackBackground {
     color: #fff; }
   body.blackBackground .siteNotice:hover {
     background: #3c3c3c; }
+  body.blackBackground #captionToggle {
+    background: #0a0a0a;
+    border: 1px solid #787878;
+    color: #787878; }
+  body.blackBackground #captionToggle.on {
+    border: 1px solid #fff;
+    color: #fff; }
 
 body.yellowBackground {
   background: #f0f000; }
@@ -221,7 +228,7 @@ body.shake {
 #cursor.pause {
   width: 70px;
   height: 70px;
-  transform: translateX(-35px) translateY(-35px) scale(0.95); }
+  transform: translateX(-35px) translateY(-35px); }
 
 #cursorWrapper {
   position: relative; }
@@ -242,11 +249,26 @@ body.shake {
   z-index: 1;
   opacity: 0; }
 
-#cursor.pause #cursorWrapper img:first-child {
+#cursorWrapper img:nth-child(3) {
+  opacity: 0; }
+
+#cursor.pause #cursorWrapper img:nth-child(1) {
   opacity: 0; }
 
 #cursor.pause #cursorWrapper img:nth-child(2) {
   opacity: 1; }
+
+#cursor.pause #cursorWrapper img:nth-child(3) {
+  opacity: 0; }
+
+#cursor.reload #cursorWrapper img:nth-child(3) {
+  opacity: 1; }
+
+#cursor.reload #cursorWrapper img:nth-child(2) {
+  opacity: 0; }
+
+#cursor.reload #cursorWrapper img:nth-child(1) {
+  opacity: 0; }
 
 #siteNoticeContainer.loaded .siteNotice {
   visibility: visible;
@@ -433,3 +455,46 @@ body.videoIsPaused #realTimeData.active {
     transform: translateY(-52.5%) translateX(55%); }
   100% {
     transform: translateY(-52.5%) translateX(-100%); } }
+
+#shareOnTwitter {
+  font-size: 14px;
+  font-family: courier, monospace;
+  cursor: pointer;
+  background: #007bff;
+  padding-top: 8px;
+  padding-bottom: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 2px;
+  color: white;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  visibility: hidden;
+  top: -50px;
+  transition: top 0.4s;
+  z-index: 150; }
+
+#shareOnTwitter.active {
+  visibility: visible;
+  top: 15px; }
+
+#whiteLoadingScreen {
+  position: fixed;
+  z-index: 999;
+  pointer-events: none;
+  background: rgba(255, 255, 255, 0);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0; }
+
+#whiteLoadingScreen.active {
+  animation: fadeIn 1s linear;
+  animation-fill-mode: forwards; }
+
+@keyframes fadeIn {
+  0% {
+    background: rgba(255, 255, 255, 0); }
+  100% {
+    background: white; } }

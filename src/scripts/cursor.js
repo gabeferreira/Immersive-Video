@@ -20,29 +20,50 @@ setTimeout(function(){
 
 		if (cursor.classList.contains('pause')) {
 
-			if (body.classList.contains('pauseJoke') || event.target.id === 'captionToggle') {
+			if (body.classList.contains('pauseJoke') || event.target.id === 'captionToggle' || event.target.id === 'shareOnTwitter') {
 
 				return;
 
 			} else {
 
 				cursor.classList.remove('pause');
+				cursor.classList.add('play')
 				monologue.pause();
 				body.classList.add('videoIsPaused');
 
 			}
 
-		} else {
+		} else if (cursor.classList.contains('play')) {
 
-			if (event.target.classList.contains('siteNotice') || event.target.id === 'captionToggle') {
+			if (event.target.classList.contains('siteNotice') || event.target.id === 'captionToggle' || event.target.id === 'shareOnTwitter') {
 
 				return;
 
 			} else {
 
 				cursor.classList.add('pause');
+				cursor.classList.remove('play');
 				monologue.play();
 				body.classList.remove('videoIsPaused');
+
+			};
+
+		} else {
+
+			if (event.target.classList.contains('siteNotice') || event.target.id === 'captionToggle' || event.target.id === 'shareOnTwitter') {
+
+				return;
+
+			} else {
+
+				cursor.classList.remove('pause');
+				cursor.classList.add('reload');
+
+				// Fade in the white screen, then reload the page once it is complete
+				whiteLoadingScreen.classList.add('active');
+				whiteLoadingScreen.addEventListener('animationend', function(){
+					location.reload();
+				});
 
 			};
 

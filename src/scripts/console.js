@@ -1,2 +1,2 @@
 // Javascript Document
-console.log('Development by Gabe Ferreira');
+console.log('Design and development by Gabe Ferreira');

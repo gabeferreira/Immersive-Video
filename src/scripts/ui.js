@@ -7,6 +7,7 @@ var bitcoinPrice;
 var dayOfWeek;
 var siteNoticeContainer = document.getElementById('siteNoticeContainer');
 var captionToggle = document.getElementById('captionToggle');
+var shareOnTwitter = document.getElementById('shareOnTwitter');
 
 backgroundText.textContent = 'A proposal for immersive video on the web';
 
@@ -73,6 +74,9 @@ monologue.addEventListener('timeupdate', function(){
 
 	console.log(monologue.currentTime);
 
+	// End of video(10,11)
+	if (monologue.currentTime > 10 && monologue.currentTime < 11) { endOfVideo(); }
+
 	// Turn background black (26,27)
 	if (monologue.currentTime > 26 && monologue.currentTime < 27) { turnBackgroundBlack(); }
 
@@ -110,6 +114,12 @@ monologue.addEventListener('timeupdate', function(){
 	if (monologue.currentTime > 126 && monologue.currentTime < 127) { pauseTheVideo(); }
 
 });
+
+monologue.addEventListener('ended', function(){
+
+	endOfVideo();
+
+})
 
 // Website morphing functions
 
@@ -203,35 +213,14 @@ function getBitcoinPrice() {
 
 getBitcoinPrice();
 
-function determineIfItIsFriday() {
-
-	var date = new Date();
-	dayOfWeek = date.getDay();
-
-	return dayOfWeek;
-
-}
-
 var displayRealTimeData = (function() {
 	var executed = false;
 	return function() {
 		if (!executed) {
 			executed = true;
-			determineIfItIsFriday();
-
-			var isItFriday = function() {
-
-				if (dayOfWeek === 'Friday') {
-					return 'It is already Friday,';
-				} else {
-					return 'It is not Friday yet,';
-				}
-
-			}
 
 			var realTimeData = document.createElement('div');
 				realTimeData.id = 'realTimeData';
-				// realTimeData.textContent = isItFriday() + ' and Bitcoin is worth USD ' + bitcoinPrice + '.';
 				realTimeData.textContent = '1 BTC is now worth $' + bitcoinPrice + '.';
 
 			body.appendChild(realTimeData);
@@ -259,5 +248,13 @@ var pauseTheVideo = (function() {
 		}
 	};
 })();
+
+function endOfVideo() {
+
+	shareOnTwitter.classList.add('active');
+	cursor.classList.remove('pause');
+	cursor.classList.add('reload');
+
+}
 
 

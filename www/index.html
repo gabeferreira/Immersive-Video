@@ -27,9 +27,21 @@ Development by Gabe Ferreira
 	<meta name="twitter:description" content="A proposal for immersive video on the web" />
 	<meta name="twitter:image" content="http://video.gabeferreira.com/assets/img/immersive-video.jpg" />
 
+	<!--Google Analytics-->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-XFSR4K30W9"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'G-XFSR4K30W9');
+	</script>
+
 </head>
 
 <body class="loading">
+
+	<div id="whiteLoadingScreen">
+	</div><!--whiteLoadingScreen-->
 
 	<div id="siteNoticeContainer">
 		<a class="siteNotice" href="http://gabeferreira.com/" target="_blank">A project by Gabe Ferreira</a><!--siteNotice-->
@@ -59,16 +71,19 @@ Development by Gabe Ferreira
 		<img src="assets/img/buttons/buy-now-06.svg">
 	</div><!--buyNowButtonContainer-->
 
-	<div id="cursor">
+	<div id="cursor" class="play">
 		<div id="cursorWrapper">
 			<img src="assets/img/cursor/cursor-play.svg">
 			<img src="assets/img/cursor/cursor-pause.svg">
+			<img src="assets/img/cursor/cursor-reload.svg">
 		</div><!--cursorWrapper-->
 	</div><!--cursor-->
 
 	<div id="encryption">
 		<img src="assets/img/encryption/encryption.png">
 	</div><!--encryption-->
+
+	<a id="shareOnTwitter" href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" target="_blank" data-text="A proposal for immersive video on the web" data-url="http://video.gabeferreira.com" data-via="gabe_ferreira_" data-lang="en" data-show-count="false">Share this on Twitter</a>
 
 	<script async src="assets/app.js"></script>
 
