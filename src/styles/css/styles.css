@@ -617,4 +617,16 @@ body.showingAslVideo #monologueContainer {
   body.showingAslVideo #monologueContainer {
     transform: translateX(-50%) translateY(calc(-50% - 55px - 10px)) scale(1); }
   body.showingAslVideo #aslVideo {
-    transform: translateY(calc(-50% + 55px + 10px)) translateX(-50%); } }
+    transform: translateY(calc(-50% + 55px + 10px)) translateX(-50%); }
+  #buyNowButtonContainer img {
+    width: 160%; }
+  #buyNowButtonContainer img:nth-child(1) {
+    left: -20%; }
+  #buyNowButtonContainer img:nth-child(2) {
+    left: -27%; }
+  #buyNowButtonContainer img:nth-child(3) {
+    left: -5%; }
+  #buyNowButtonContainer img:nth-child(4) {
+    left: -28%; }
+  #buyNowButtonContainer img:nth-child(5) {
+    left: -18%; } }
