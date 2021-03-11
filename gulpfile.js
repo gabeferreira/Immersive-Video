@@ -19,6 +19,7 @@ var jsSources = [
 	'src/scripts/console.js',
 	'src/scripts/ui.js',
 	'src/scripts/cursor.js',
+	'src/scripts/captions.js',
 ]
 
 gulp.task('html', function(done) {

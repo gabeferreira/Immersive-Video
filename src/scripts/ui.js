@@ -1,15 +1,6 @@
 // Javascript document
 
-var playVideo = document.getElementById('playVideo');
-var backgroundText = document.getElementById('backgroundText');
-var encryption = document.getElementById('encryption');
-var bitcoinPrice;
-var dayOfWeek;
-var siteNoticeContainer = document.getElementById('siteNoticeContainer');
-var captionToggle = document.getElementById('captionToggle');
-var shareOnTwitter = document.getElementById('shareOnTwitter');
-
-backgroundText.textContent = 'A proposal for immersive video on the web';
+// backgroundText.textContent = 'A proposal for immersive video on the web';
 
 setTimeout(function(){
 	backgroundText.classList.add('loaded');
@@ -34,15 +25,6 @@ function createVideo() {
 
 	monologueContainer.appendChild(monologue);
 	monologue.load();
-
-	monologue.addEventListener("loadedmetadata", function() {
-		track = document.createElement("track");
-		track.kind = "captions";
-		track.label = "English";
-		track.srclang = "en";
-		track.src = "assets/video/captions.vtt";
-		this.appendChild(track);
-	});
 }
 
 createVideo();
@@ -61,21 +43,13 @@ setTimeout(function(){
 captionToggle.addEventListener('click', function(){
 
 	captionToggle.classList.toggle('on');
-
-	if (captionToggle.classList.contains('on')) {
-		monologue.textTracks[0].mode = "showing";
-	} else {
-		monologue.textTracks[0].mode = "hidden";
-	}
+	captionContainer.classList.toggle('visible');
 
 });
 
 monologue.addEventListener('timeupdate', function(){
 
 	console.log(monologue.currentTime);
-
-	// End of video(10,11)
-	if (monologue.currentTime > 10 && monologue.currentTime < 11) { endOfVideo(); }
 
 	// Turn background black (26,27)
 	if (monologue.currentTime > 26 && monologue.currentTime < 27) { turnBackgroundBlack(); }
@@ -112,6 +86,9 @@ monologue.addEventListener('timeupdate', function(){
 
 	// Pause the video (126,127)
 	if (monologue.currentTime > 126 && monologue.currentTime < 127) { pauseTheVideo(); }
+
+	// Pause the video (140,141)
+	if (monologue.currentTime > 142 && monologue.currentTime < 143) { showAslVideo(); }
 
 });
 
@@ -243,7 +220,7 @@ var pauseTheVideo = (function() {
 			setTimeout(function(){
 				body.classList.remove('pauseJoke');
 				monologue.play();
-			}, 4500);
+			}, 3500);
 
 		}
 	};
@@ -254,7 +231,48 @@ function endOfVideo() {
 	shareOnTwitter.classList.add('active');
 	cursor.classList.remove('pause');
 	cursor.classList.add('reload');
+	captionContainer.textContent = '';
 
 }
 
+function showAslVideo() {
 
+	if (aslVideoHappened) {
+
+		return;
+
+	} else {
+
+		aslVideoHappened = true;
+
+		var aslVideo = document.createElement('video');
+			aslVideo.id = 'aslVideo';
+
+		var aslVideoSource = document.createElement('source');
+			aslVideoSource.type = 'video/mp4';
+			aslVideoSource.src = 'assets/video/asl.mp4';
+
+			aslVideo.appendChild(aslVideoSource);
+			fullscreenContainer.appendChild(aslVideo);
+
+			aslVideo.load();
+			aslVideo.play();
+
+			aslVideo.addEventListener('ended', function(){
+				body.classList.remove('showingAslVideo');
+
+				setTimeout(function(){
+					aslVideo.parentElement.removeChild(aslVideo);
+				}, 1000);
+
+			});
+
+		setTimeout(function(){
+
+			body.classList.add('showingAslVideo');
+
+		}, 250);
+
+	}
+
+}

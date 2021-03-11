@@ -31,6 +31,14 @@ setTimeout(function(){
 				monologue.pause();
 				body.classList.add('videoIsPaused');
 
+				var aslVideoElement = document.getElementById('aslVideo');
+
+				if (aslVideoElement) {
+					aslVideo.pause();
+				} else {
+					console.log('there is no asl Video');
+				}
+
 			}
 
 		} else if (cursor.classList.contains('play')) {
@@ -44,7 +52,15 @@ setTimeout(function(){
 				cursor.classList.add('pause');
 				cursor.classList.remove('play');
 				monologue.play();
-				body.classList.remove('videoIsPaused');
+				body.classList.remove('videoIsPaused');	
+
+				var aslVideoElement = document.getElementById('aslVideo');			
+
+				if (aslVideoElement) {
+					aslVideo.play();
+				} else {
+					console.log('there is no asl Video');
+				}
 
 			};
 
