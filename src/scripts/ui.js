@@ -12,6 +12,9 @@ function createVideo() {
 	var monologueSource = document.createElement('source');
 		monologueSource.type = 'video/mp4';
 		monologueSource.src = 'assets/video/immersive-video.mp4';
+
+		monologue.setAttribute('webkit-playsinline', 'webkit-playsinline');
+		monologue.setAttribute('playsinline', 'playsinline');
 		
 		monologue.appendChild(monologueSource);
 		monologue.addEventListener('click', function(){

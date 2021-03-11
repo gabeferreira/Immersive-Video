@@ -353,7 +353,7 @@ body.shake {
 	background:$white;
 	border:1px solid $midGrey;
 	color:$captionTextGrey;
-	transition:background $fastTransitionSpeed, color $fastTransitionSpeed, border $fastTransitionSpeed, padding $fastTransitionSpeed, opacity $slowTransitionSpeed;
+	transition:background $slowTransitionSpeed, color $slowTransitionSpeed, border $slowTransitionSpeed, padding $fastTransitionSpeed, opacity $slowTransitionSpeed;
 	opacity:0;
 	visibility:hidden;
 }

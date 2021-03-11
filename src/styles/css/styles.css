@@ -325,7 +325,7 @@ body.shake {
   background: #fff;
   border: 1px solid gainsboro;
   color: #787878;
-  transition: background 0.4s, color 0.4s, border 0.4s, padding 0.4s, opacity 1s;
+  transition: background 1s, color 1s, border 1s, padding 0.4s, opacity 1s;
   opacity: 0;
   visibility: hidden; }
 
