@@ -255,6 +255,9 @@ function showAslVideo() {
 			aslVideoSource.type = 'video/mp4';
 			aslVideoSource.src = 'assets/video/asl.mp4';
 
+			aslVideo.setAttribute('webkit-playsinline', 'webkit-playsinline');
+			aslVideo.setAttribute('playsinline', 'playsinline');
+
 			aslVideo.appendChild(aslVideoSource);
 			fullscreenContainer.appendChild(aslVideo);
 
