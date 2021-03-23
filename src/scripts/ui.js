@@ -52,8 +52,6 @@ captionToggle.addEventListener('click', function(){
 
 monologue.addEventListener('timeupdate', function(){
 
-	console.log(monologue.currentTime);
-
 	// Turn background black (26,27)
 	if (monologue.currentTime > 26 && monologue.currentTime < 27) { turnBackgroundBlack(); }
 
@@ -96,9 +94,7 @@ monologue.addEventListener('timeupdate', function(){
 });
 
 monologue.addEventListener('ended', function(){
-
 	endOfVideo();
-
 })
 
 // Website morphing functions
